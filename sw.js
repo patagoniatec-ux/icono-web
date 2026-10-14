@@ -1,4 +1,4 @@
-const CACHE='estudio-web-2';
+const CACHE='estudio-web-3';
 const FILES=['./','./index.html','./style.css','./app.js','./manifest.webmanifest','./assets/icon.svg','./assets/icon-192.png','./assets/icon-512.png','./assets/concrete.webp','./assets/drawing.webp','./assets/materials.webp','./assets/printing.webp','./assets/farm.webp','./assets/school.webp','./assets/generic.webp','./assets/library.webp'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('estudio-web-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
