@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#153d32"/><stop offset="1" stop-color="#2c604b"/></linearGradient></defs>
+<rect width="1000" height="560" fill="url(#bg)"/>
+<circle cx="920" cy="45" r="240" fill="#d4e49a" opacity=".07"/><circle cx="80" cy="550" r="230" fill="#d4e49a" opacity=".05"/>
+<g font-family="Arial, sans-serif"><text x="68" y="88" fill="#d4e49a" font-size="19" letter-spacing="5">GENIO COWORKING</text>
+<text x="65" y="170" fill="#fafbf2" font-size="53" font-weight="700">Oficina compartida</text>
+<text x="68" y="214" fill="#bcd0bd" font-size="23">Dos lugares. Un mismo equipo.</text>
+<path d="M335 355H665" fill="none" stroke="#a4bd7c" stroke-width="3" stroke-dasharray="8 9"/>
+<circle cx="500" cy="355" r="30" fill="#d4e49a"/><path d="M487 355h26m-8-8 8 8-8 8m-10-15-8 7 8 7" stroke="#244c39" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(110 276)"><rect width="240" height="147" rx="14" fill="#f2f5e9"/><rect x="13" y="13" width="214" height="112" rx="7" fill="#dce8c3"/><path d="m45 86 39-29 30 20 36-39 47 48" stroke="#769866" stroke-width="4" fill="none"/><path d="M120 148v22m-42 0h84" stroke="#b4c798" stroke-width="8" stroke-linecap="round"/></g>
+<g transform="translate(650 276)"><rect width="240" height="147" rx="14" fill="#f2f5e9"/><rect x="13" y="13" width="214" height="112" rx="7" fill="#dce8c3"/><rect x="40" y="40" width="45" height="59" rx="4" fill="#82a16b"/><rect x="97" y="29" width="45" height="70" rx="4" fill="#a3b881"/><rect x="154" y="52" width="45" height="47" rx="4" fill="#c0cf9a"/><path d="M120 148v22m-42 0h84" stroke="#b4c798" stroke-width="8" stroke-linecap="round"/></g>
+<text x="230" y="486" fill="#d4e49a" font-size="20" text-anchor="middle">CHACRA</text><text x="770" y="486" fill="#d4e49a" font-size="20" text-anchor="middle">GENERAL ROCA</text>
+</g></svg>
