@@ -2,7 +2,16 @@
 const KEY='estudio-web-v1', $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl=v=>{if(!v)return '';try{const u=new URL(v);return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}};
 const safeImage=v=>{if(!v)return '';if(typeof v!=='string'||v.length>350000)return '';if(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(v))return v;return safeUrl(v);};
-const coverSource=s=>safeImage(s.imageCustom)||(s.id==='oficina-compartida'||(s.url||'').includes('genio-oficina.sleekshore.chatgpt.site')?'assets/oficina-cover.svg':'')||(s.id==='expo-cet33'||(s.url||'').includes('/expo-cet33-mmo/')?'assets/expo-cover.svg':s.id==='cotv-presentation'||(s.url||'').includes('/cotv-presentacion/')?'assets/cotv-cover.svg':'')||(s.image==='taxi'?'assets/taxi-roca-cover.svg':'')||`assets/${s.image==='library'?'library.webp':s.image+'.webp'}`;
+function distinctProjectCover(s){
+ const url=(s.url||'').replace(/\/$/,'');
+ const construction=s.id==='detalles-que-construyen'||url==='https://detalles-que-construyen-cet33.sleekshore.chatgpt.site';
+ const lockers=s.id==='expo-lockers'||url==='https://expo-cet33-lockers.sleekshore.chatgpt.site';
+ if(!construction&&!lockers)return '';
+ const shared=construction?'concrete.webp':'expo-cover.svg';
+ if(s.imageCustom&&s.imageCustom!=='https://patagoniatec-ux.github.io/icono-web/assets/'+shared)return '';
+ return construction?'assets/detalles-cover.svg':'assets/lockers-cover.svg';
+}
+const coverSource=s=>distinctProjectCover(s)||safeImage(s.imageCustom)||(s.id==='oficina-compartida'||(s.url||'').includes('genio-oficina.sleekshore.chatgpt.site')?'assets/oficina-cover.svg':'')||(s.id==='expo-cet33'||(s.url||'').includes('/expo-cet33-mmo/')?'assets/expo-cover.svg':s.id==='cotv-presentation'||(s.url||'').includes('/cotv-presentacion/')?'assets/cotv-cover.svg':'')||(s.image==='taxi'?'assets/taxi-roca-cover.svg':'')||`assets/${s.image==='library'?'library.webp':s.image+'.webp'}`;
 function migrateLibrary(s){let changed=false;for(const item of s.sites){const name=item.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(name.includes('biblioteca')&&!item.imageCustom&&['materials','concrete','generic'].includes(item.image)){item.image='library';changed=true;}}return changed;}
 const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2);
 const cats=[['web','Estudio Web','▦'],['teaching','Docencia','♧'],['farm','Trabajo de la chacra','♧'],['home','Trabajo de casa','⌂'],['bills','Cuentas y pagos','▤'],['tools','Herramientas','⚒']].map(([id,name,icon])=>({id,name,icon}));
