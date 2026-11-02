@@ -11,7 +11,14 @@ function distinctProjectCover(s){
  if(s.imageCustom&&s.imageCustom!=='https://patagoniatec-ux.github.io/icono-web/assets/'+shared)return '';
  return construction?'assets/detalles-cover.svg':'assets/lockers-cover.svg';
 }
-const coverSource=s=>distinctProjectCover(s)||safeImage(s.imageCustom)||(s.id==='oficina-compartida'||(s.url||'').includes('genio-oficina.sleekshore.chatgpt.site')?'assets/oficina-cover.svg':'')||(s.id==='expo-cet33'||(s.url||'').includes('/expo-cet33-mmo/')?'assets/expo-cover.svg':s.id==='cotv-presentation'||(s.url||'').includes('/cotv-presentacion/')?'assets/cotv-cover.svg':'')||(s.image==='taxi'?'assets/taxi-roca-cover.svg':'')||`assets/${s.image==='library'?'library.webp':s.image+'.webp'}`;
+function uniqueDesktopCover(s){
+ const covers={'bekas-toppers':'bekas','bandeja-cinco-sitios':'editorial','automatizacion-arduino':'arduino','portal-studio':'portal-studio'};
+ const key=covers[s.id];if(!key)return '';
+ const custom=s.imageCustom||'';
+ if(custom&&!/\/assets\/(studio|printing|generic)\.webp(?:\?.*)?$/.test(custom))return '';
+ return 'assets/'+key+'-unique-cover.svg';
+}
+const coverSource=s=>uniqueDesktopCover(s)||distinctProjectCover(s)||safeImage(s.imageCustom)||(s.id==='oficina-compartida'||(s.url||'').includes('genio-oficina.sleekshore.chatgpt.site')?'assets/oficina-cover.svg':'')||(s.id==='expo-cet33'||(s.url||'').includes('/expo-cet33-mmo/')?'assets/expo-cover.svg':s.id==='cotv-presentation'||(s.url||'').includes('/cotv-presentacion/')?'assets/cotv-cover.svg':'')||(s.image==='taxi'?'assets/taxi-roca-cover.svg':'')||`assets/${s.image==='library'?'library.webp':s.image+'.webp'}`;
 function migrateLibrary(s){let changed=false;for(const item of s.sites){const name=item.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();if(name.includes('biblioteca')&&!item.imageCustom&&['materials','concrete','generic'].includes(item.image)){item.image='library';changed=true;}}return changed;}
 const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2);
 const cats=[['web','Estudio Web','▦'],['teaching','Docencia','♧'],['farm','Trabajo de la chacra','♧'],['home','Trabajo de casa','⌂'],['bills','Cuentas y pagos','▤'],['tools','Herramientas','⚒']].map(([id,name,icon])=>({id,name,icon}));
